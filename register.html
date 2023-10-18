@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+</head>
+<body>
+    <h2>User Registration</h2>
+    <form id="registrationForm" action="process_registration.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        // Store form data in local storage when the form is submitted
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const userData = {};
+
+            formData.forEach((value, key) => {
+                userData[key] = value;
+            });
+
+            localStorage.setItem("userData", JSON.stringify(userData));
+            this.reset();
+            alert("User data has been stored in local storage.");
+        });
+    </script>
+</body>
+</html>
